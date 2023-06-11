@@ -5,12 +5,15 @@ import cors from 'cors'
 
 import { loadEnv, connectDb, disconnectDB } from '@/config'
 
+import { usersRouter } from '@/routers'
+
 loadEnv()
 
 const app = express()
 app
     .use(cors())
     .use(express.json())
+    .use('/users', usersRouter)
 
 export function init(): Promise<Express> {
     connectDb();

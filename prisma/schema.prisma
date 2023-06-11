@@ -12,13 +12,14 @@ model Session {
   userId    Int
   token     String
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
 }
 
 model User {
   id        Int      @id @default(autoincrement())
-  email     String   @db.VarChar(255)
+  email     String   @unique(map: "unique_email") @db.VarChar(255)
   password  String   @db.VarChar(255)
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  name      String?  @db.VarChar(100)
+  updatedat DateTime @default(now())
 }
