@@ -6,6 +6,7 @@ import cors from 'cors'
 import { loadEnv, connectDb, disconnectDB } from '@/config'
 
 import { usersRouter } from '@/routers'
+import { authenticationRouter } from '@/routers'
 
 loadEnv()
 
@@ -14,6 +15,7 @@ app
     .use(cors())
     .use(express.json())
     .use('/users', usersRouter)
+    .use('/auth', authenticationRouter)
 
 export function init(): Promise<Express> {
     connectDb();
